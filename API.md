@@ -11,7 +11,7 @@ This is the documentation for the binary to handle the input and output of the d
 
  Format of the data --> {"list", data : [<users_id>]}
 
- Example: { "list", [asdfsdf, sadfsadfsd, sadfds]}
+ Example: { "event": "list", "list": [asdfsdf, sadfsadfsd, sadfds]}
 
 ###Output:
   Send a list of users_id as well as the sdp message to the plugin

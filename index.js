@@ -1,84 +1,65 @@
-const wrtc = require('wrtc');
-const Peer = require('simple-peer');
-
-var peer = null;
-
-//TODO: user stdin to get the message from the plugin:
-var data = null; //store the recieved data from the plugin
-var msgArr = data.split(WEBSOCKET_DELIMETER);
-var event = msgArr[0];
-var data = msgArr[1];
-
-switch(event) {
-    //case of receiving users list
-    case 'list':
-        //check empty list
-        if ( data.length == 0 ) break;
-        var users = data;
-        broadcastOffer(socket, users);
-        break;
-
-    //case of receiving sdp object
-    case 'data':
-        try{
-            var from = JSON.parse(data).from;
-            var data = JSON.parse(data).data;
-            sdpHandler(socket, from, data);
+const Readline = require('readline')
 
 
-        } catch(e) {
-            logError(socket, 'bad JSON');
-        }
-        break;
+const rl = Readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
 
-    //case of sending the text after connections is established
+var Users = {}
+
+
+
+/** Accepts a JSON block, attempts to parse and properly handle it. */
+function parse (data, cb) {
+  // Catch bad JSON and non formatted inputs.
+  try {
+    var json = JSON.parse(data)
+  } catch(e) {
+    console.log(`{"event":"error","data":${e}}`)
+    cb && cb()
+    return
+  }
+
+  // If the JSON is good, handle it properly.
+  switch (json.event) {
     case 'message':
-        connectionHandler(text);
 
-    default:
-        console.error(`Event ${event} is unknown`);
+      if (json.to == 'all') {
+
+
+      }
+
+      var user
+      // Escape if the user doesn't exist.
+      if(!(user = Users[json.to])) {
+        break
+      }
+
+      // Send the data to the user.
+      user.datachannel.send(json.data)
+    break
+    case 'conn': 
+
+    break
+    case 'list':
+      list.forEach((user_id) => {
+        Users[user_id] = {
+          id: user_id
+        }
+      })
+    break
+  }
+
+  cb && cb()
 }
 
-var broadcastOffer = (socket, users) => {
-    //For each user on the list
-    for(var i = 0; i<users.length;i++) {
-        //create the offer
-        peer = new Peer({ initiator: true, wrtc: wrtc, trickle: true});
 
-        //Received the offer
-        peer.on('signal', function (data) {
-            //Construct the response object
-            var responseTemplate = {'to': users[i], 'data': JSON.stringify(data)};
-            //Send offer back to the server
-            socket.emit('message', responseTemplate);
-        });
-    }
-};
-
-//handle redirecting offer or signaling answer
-var sdpHandler = (socket, user, sdp) => {
-    //create answer or activate the answer on the initiator side
-    peer.signal(sdp);
-    peer.on('signal', function (data) {
-        //Construct the response object
-        var responseTemplate = {'to': users[i], 'data': JSON.stringify(data)};
-
-        //Send offer back to the server
-        socket.emit('message', responseTemplate);
-    });
-    connectionHandler();
-};
-
-//listener for collecting data in the dataChannel
-var connectionHandler = (text) => {
-    //check
-    peer.on('connect', function () {
-        peer.send('Ping');
-    });
-
-    peer.send(text);
-
-    peer.on('data', function (data) {
-        console.log( data);
-    });
-};
+/** Keep asking questions forever. */
+(function ask () {
+  rl.question('', (answer) => {
+    parse(answer, () => {
+      setTimeout(ask,0)
+    })
+  })
+})()
