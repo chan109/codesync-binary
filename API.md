@@ -4,16 +4,17 @@ This is the documentation for the binary to handle the input and output of the d
 ##Handling the usersList
 
 ###Input:
- receive a list of users_id in the repository
- an offer is created to each of the user in the list
+ Description:
+ Receive a list of users_id in the repository
+
+ An offer is created to each of the user in the list
 
  Format of the data --> {"list", data : [<users_id>]}
 
  Example: { "list", [asdfsdf, sadfsadfsd, sadfds]}
 
- ###Output:
-  Description:
-  send a list of users_id as well as the sdp message to the plugin
+###Output:
+  Send a list of users_id as well as the sdp message to the plugin
 
   Format for the output data --> {"event": "conn", "payload":{"to": <users_id>, data: <sdp message>}}
 
@@ -28,7 +29,7 @@ This is the documentation for the binary to handle the input and output of the d
 
 ###Input:
  Description:
- receive a object which contains the event type, a user_id and a sdp offer/answer
+ Receive a object which contains the event type, a user_id and a sdp offer/answer
 
  Format of the data --> {"event": "conn", "payload": {"from", <user_id>, "data": <sdp answer/offer>}}
 
@@ -46,7 +47,7 @@ This is the documentation for the binary to handle the input and output of the d
 ##Handling the message transfer :
 ###Input:
  Description:
- receive the data that send to the other client
+ Receive the data that send to the other client
 
  Format of the data --> {"event": "message", "payload": <message>}
 
@@ -54,7 +55,7 @@ This is the documentation for the binary to handle the input and output of the d
 
 ###Output:
  Description:
- send the message to the other client through the dataChannel using the p2p connection. It signals the plugin when the
+ Send the message to the other client through the dataChannel using the p2p connection. It signals the plugin when the
  message is sent.
 
  Example: {"message": "message is sent"}
