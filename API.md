@@ -12,16 +12,16 @@ This is the documentation for the binary to handle the input and output of the d
  Example: { "list", [asdfsdf, sadfsadfsd, sadfds]}
 
  ###Output:
- Description:
- send a list of users_id as well as the sdp message to the plugin
+  Description:
+  send a list of users_id as well as the sdp message to the plugin
 
- Format for the output data --> {"event": "conn", "payload":{"to": <users_id>, data: <sdp message>}}
+  Format for the output data --> {"event": "conn", "payload":{"to": <users_id>, data: <sdp message>}}
 
- Example: {"event": "conn", "payload": {"to", "salkdjfl", "data": "aslkdfjlasdf"}}
+  Example: {"event": "conn", "payload": {"to", "salkdjfl", "data": "aslkdfjlasdf"}}
 
- Then, the receiver side uses something like JSON.parse() to parse and make use of the data.
+  Then, the receiver side uses something like JSON.parse() to parse and make use of the data.
 
- Remark: The data array is expected to be non-empty all the time. The case when the userlist is empty, it wil be handled by the plugin.
+  Remark: The data array is expected to be non-empty all the time. The case when the userlist is empty, it wil be handled by the plugin.
 
 
 ##Handling the sdp
