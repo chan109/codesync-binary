@@ -11,7 +11,7 @@ This is the documentation for the binary to handle the input and output of the d
 
  Example: { "list", [asdfsdf, sadfsadfsd, sadfds]}
 
- Output:
+ ###Output:
  Description:
  send a list of users_id as well as the sdp message to the plugin
 
