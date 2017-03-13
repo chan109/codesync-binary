@@ -26,6 +26,7 @@ function parse (data, cb) {
         for(var user in Users) {
             Users[user].send(json.data)
         }
+        break
     case 'list':
       list.forEach((user_id) => {
         // Don't worry about users we already have.
@@ -40,10 +41,7 @@ function parse (data, cb) {
         }
 
         peer.on('data', function (data) {
-            switch (data.event):
-                case 'message':
-                    peer.send(data);
-                    break;
+            peer.send(data);
         })
         //{user_id:..., sdp: ....}
         peer.on('offer', function (data) {
@@ -52,8 +50,11 @@ function parse (data, cb) {
             })
 
         })
+    break;
+      default:
+          break;
+      
       })
-    break
   }
 
   cb && cb()
