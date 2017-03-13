@@ -9,7 +9,6 @@ const rl = Readline.createInterface({
 var Users = {}
 
 
-
 /** Accepts a JSON block, attempts to parse and properly handle it. */
 function parse (data, cb) {
   // Catch bad JSON and non formatted inputs.
@@ -23,6 +22,10 @@ function parse (data, cb) {
 
   // If the JSON is good, handle it properly.
   switch (json.event) {
+    case 'broadcast' :
+        for(var user in Users) {
+            Users[user].send(json.data)
+        }
     case 'list':
       list.forEach((user_id) => {
         // Don't worry about users we already have.
@@ -36,7 +39,19 @@ function parse (data, cb) {
           rtc: peer
         }
 
-        peer.on('data', function () {})
+        peer.on('data', function (data) {
+            switch (data.event):
+                case 'message':
+                    peer.send(data);
+                    break;
+        })
+        //{user_id:..., sdp: ....}
+        peer.on('offer', function (data) {
+            var sdp = {"user_id": user_id, "sdp": data}
+            console.log(JSON.stringify(sdp));
+            })
+
+        })
       })
     break
   }
