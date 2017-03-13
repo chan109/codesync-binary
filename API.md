@@ -9,9 +9,9 @@ This is the documentation for the binary to handle the input and output of the d
 
  An offer is created to each of the user in the list
 
- Format of the data --> {"list", data : [<users_id>]}
+ Format of the data --> {"event": "list", payload : [<users_id>]}
 
- Example: { "event": "list", "list": [asdfsdf, sadfsadfsd, sadfds]}
+ Example: { "event": "list", "payload": [asdfsdf, sadfsadfsd, sadfds]}
 
 ###Output:
   Send a list of users_id as well as the sdp message to the plugin
@@ -31,9 +31,9 @@ This is the documentation for the binary to handle the input and output of the d
  Description:
  Receive a object which contains the event type, a user_id and a sdp offer/answer
 
- Format of the data --> {"event": "conn", "payload": {"from", <user_id>, "data": <sdp answer/offer>}}
+ Format of the data --> {"event": "sdp", "payload": {"from", <user_id>, "data": <sdp answer/offer>}}
 
- Example: {"event": "conn", "data": {"from", "asdfsadfsa22", "data": "safasfsafsad33"}}
+ Example: {"event": "sdp", "data": {"from", "asdfsadfsa22", "data": "safasfsafsad33"}}
 
 ###Output:
  Description:

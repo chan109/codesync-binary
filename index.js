@@ -14,6 +14,7 @@ function parse (data, cb) {
   // Catch bad JSON and non formatted inputs.
   try {
     var json = JSON.parse(data)
+      console.log(json);
   } catch(e) {
     console.log(`{"event":"error","data":${e}}`)
     cb && cb()
@@ -27,8 +28,9 @@ function parse (data, cb) {
             Users[user].send(json.data)
         }
         break
+      
     case 'list':
-      list.forEach((user_id) => {
+      json.data.forEach((user_id) => {
         // Don't worry about users we already have.
         if (Users[user_id])
           return
@@ -50,15 +52,11 @@ function parse (data, cb) {
             })
 
         })
-    break;
-      default:
-          break;
-      
-      })
+    
+      }
+      cb && cb()
   }
 
-  cb && cb()
-}
 
 
 /** Keep asking questions forever. */

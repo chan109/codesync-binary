@@ -5,6 +5,7 @@ function Peer (user_id) {
     peer = new Peer({ initiator: true, wrtc: wrtc, trickle: true})
     
     peer.on('signal', function (data) {
+        console.log(JSON.stringify(data));
         this.Events['offer'].forEach(function (cb) {
             cb(data);
         })
@@ -26,7 +27,7 @@ Peer.prototype.on = function (event, cb) {
     } else {
         this.Events[event] = [cb]
     }
-};
+}
 
 
 
