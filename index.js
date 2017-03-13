@@ -1,5 +1,5 @@
 const Readline = require('readline')
-
+const Peer = require('./peer')
 
 const rl = Readline.createInterface({
   input: process.stdin,
@@ -25,9 +25,18 @@ function parse (data, cb) {
   switch (json.event) {
     case 'list':
       list.forEach((user_id) => {
+        // Don't worry about users we already have.
+        if (Users[user_id])
+          return
+
+        // Go through the users and add their objects to the User DB.
+        var peer = new Peer(user_id)
         Users[user_id] = {
-          id: user_id
+          id: user_id,  
+          rtc: peer
         }
+
+        peer.on('data', function () {})
       })
     break
   }
