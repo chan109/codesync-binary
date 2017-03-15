@@ -1,0 +1,37 @@
+1.On one client side input the following assume its id is 456:
+    {"event" : "list", "payload" : [123]}
+        --> a list of users which the binary tries to connect
+
+  wants to send the offer to user with id 123
+
+
+The console will return a list of sdp offer info {"type": "offer", "sdp": .....}
+
+2.Go to the other client ( assume its id is 123) console and paste the data with following format:
+
+    {"event": "offer", "payload": {"from":456,"data": {"type": "offer"........(the offer is given from the previous step)}
+
+  Remark: "from": <id>, where id the client who creates the offer
+
+
+  Then the sdp for the answer will be prompted on the console, and copy it
+
+3.2.Go to the other client ( assume its id is 456) console and paste the data with following format:
+
+    {"event":"answer","payload":{"from":123,"data": {"type" : "answer" ........(the answer is given from the previous step)
+
+
+
+At that point the p2p connection should finish
+At console, should see success and DATA : Ping
+
+Way to deliever the data:
+
+{"event" : "broadcast", "payload" : "hello world"}
+
+--> It send hello world to whoever has established the p2p connection
+
+{"event" : "message", "payload" : { "to": "123", "data": "Mamaibi"}}
+-->Specify which user I want to send the message
+
+

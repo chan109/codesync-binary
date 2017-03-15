@@ -7,7 +7,6 @@ This is the documentation for the binary to handle the input and output of the d
  Description:
  Receive a list of users_id in the repository
 
- An offer is created to each of the user in the list
 
  Format of the data --> {"event": "list", payload : [<users_id>]}
 
@@ -25,40 +24,80 @@ This is the documentation for the binary to handle the input and output of the d
   Remark: The data array is expected to be non-empty all the time. The case when the userlist is empty, it wil be handled by the plugin.
 
 
-##Handling the sdp
+##Handling the offer
 
 ###Input:
  Description:
  Receive a object which contains the event type, a user_id and a sdp offer/answer
 
- Format of the data --> {"event": "sdp", "payload": {"from", <user_id>, "data": <sdp answer/offer>}}
+ Format of the data --> {"event": "offer", "payload": {"from", <user_id>, "data": <sdp answer/offer>}}
 
- Example: {"event": "sdp", "data": {"from", "asdfsadfsa22", "data": "safasfsafsad33"}}
+ Example: {"event": "offer", "data": {"from", "asdfsadfsa22", "data": "safasfsafsad33"}}
 
 ###Output:
  Description:
  send a object which contains a event type, a user_id and a sdp offer/answer
 
- Format of the data --> {"event": "conn", "payload": {"to", <user_id>, "data": <sdp answer/offer>}}
+ Format of the data --> {"event": "conn", "payload": {"to", <user_id>, "data": <sdp offer>}}
 
  Example: {"event" : "conn", "payload": {"to", "asfasdfsdfsdf", "data": "asdfasdfsdf"}}
 
+ ##Handling the answer
 
-##Handling the message transfer :
+ ###Input:
+  Description:
+  Receive a object which contains the event type, a user_id and a sdp offer/answer
+
+  Format of the data --> {"event": "answer", "payload": {"from", <user_id>, "data": <sdp answer/offer>}}
+
+  Example: {"event": "answer", "data": {"from", "asdfsadfsa22", "data": "safasfsafsad33"}}
+
+ ###Output:
+  Description:
+  send a object which contains a event type, a user_id and a sdp offer/answer
+
+  Format of the data --> {"event": "conn", "payload": {"to", <user_id>, "data": <sdp answer>}}
+
+  Example: {"event" : "conn", "payload": {"to", "asfasdfsdfsdf", "data": "asdfasdfsdf"}}
+
+
+##Handling the broadcast transfer :
 ###Input:
  Description:
  Receive the data that send to the other client
 
- Format of the data --> {"event": "message", "payload": <message>}
+ Format of the data --> {"event": "broadcast", "payload": <message>}
 
- Example: {"event": "message", "payload": "hello wolrd"}
+ Example: {"event": "broadcast", "payload": "hello wolrd"}
 
 ###Output:
+ The following format is shown in console:
+ DATA : <text>
  Description:
  Send the message to the other client through the dataChannel using the p2p connection. It signals the plugin when the
  message is sent.
 
- Example: {"message": "message is sent"}
+ Example: DATA : Hello Everyone
+
+ ##Handling the message transfer :
+ ###Input:
+  Description:
+  Receive the data that send to the other client
+
+  Format of the data --> {"event": "message", "payload": {"to": <user_id>, "data": <message> }>}
+
+  Example: {"event": "message", "payload": {"to": 123, "data": "hello baby"}
+
+ ###Output:
+  The following format is shown in console:
+  DATA : <text>
+  Description:
+  Send the message to the other client through the dataChannel using the p2p connection. It signals the plugin when the
+  message is sent.
+
+  Example: DATA : Hello Everyone
+
+
 
 
 

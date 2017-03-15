@@ -1,19 +1,38 @@
-function Peer (user_id) {
-    this.Events = {}
+function Peer (user_id, isInit) {
+    const self = this
+    this.active = false
+    this.user_id = user_id
     const wrtc = require('wrtc')
     const Peer = require('simple-peer')
-    peer = new Peer({ initiator: true, wrtc: wrtc, trickle: true})
-    
+    if(isInit){
+        peer = new Peer({ initiator: true, wrtc: wrtc, trickle: true})
+    } else {
+        peer = new Peer({ initiator: false, wrtc: wrtc, trickle: true})
+    }
+
     peer.on('signal', function (data) {
-        console.log(JSON.stringify(data));
-        this.Events['offer'].forEach(function (cb) {
-            cb(data);
-        })
+        var sdp = {"event":"conn", "payload":{"to": user_id, "data": data}}
+        console.log(JSON.stringify(sdp));
     })
     
     peer.on('data', function (data) {
-        console.log("DATA : ", data);
+        console.log("(",self.user_id,")"," DATA : ", data.toString('utf8'));
     })
+
+    peer.on('connect', function () {
+        console.log('success')
+        self.active = true
+        console.log(self.active);
+        peer.send("Ping");
+    })
+
+    peer.on('disconnect', function () {
+        console.log("P2P disconnet")
+    })
+}
+
+Peer.prototype.signal = function(sdp) {
+    peer.signal(sdp);
 }
 
 Peer.prototype.send = function (data) {
@@ -28,6 +47,7 @@ Peer.prototype.on = function (event, cb) {
         this.Events[event] = [cb]
     }
 }
+
 
 
 
