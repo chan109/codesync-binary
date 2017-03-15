@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7a84be87-e557-4bc8-b686-b3f71c727755" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/index2.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test_data.txt" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/index.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/API.md" afterPath="$PROJECT_DIR$/API.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/peer.js" afterPath="$PROJECT_DIR$/peer.js" />
     </list>
     <ignored path="codesync-binary.iws" />
@@ -44,11 +40,11 @@
                   </provider>
                 </entry>
               </file>
-              <file leaf-file-name="index2.js" pinned="false" current-in-tab="true">
-                <entry file="file://$PROJECT_DIR$/index2.js">
+              <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/index.js">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="90">
-                      <caret line="26" column="17" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="17" />
+                    <state relative-caret-position="652">
+                      <caret line="53" column="43" selection-start-line="53" selection-start-column="43" selection-end-line="53" selection-end-column="43" />
                       <folding />
                     </state>
                   </provider>
@@ -108,7 +104,7 @@
             <entry file="file://$PROJECT_DIR$/peer.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="105">
-                  <caret line="7" column="63" selection-start-line="7" selection-start-column="63" selection-end-line="7" selection-end-column="63" />
+                  <caret line="7" column="69" selection-start-line="7" selection-start-column="69" selection-end-line="7" selection-end-column="69" />
                   <folding />
                 </state>
               </provider>
@@ -267,12 +263,12 @@
       <workItem from="1489353053415" duration="278000" />
       <workItem from="1489353450577" duration="9000" />
       <workItem from="1489353585729" duration="6602000" />
-      <workItem from="1489364896804" duration="33897000" />
+      <workItem from="1489364896804" duration="34100000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40786000" />
+    <option name="totallyTimeSpent" value="40989000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1920" y="-182" width="1920" height="1080" extended-state="0" />
@@ -378,18 +374,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/peer.js">
+    <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="33" selection-start-line="0" selection-start-column="33" selection-end-line="0" selection-end-column="33" />
+        <state relative-caret-position="652">
+          <caret line="53" column="43" selection-start-line="53" selection-start-column="43" selection-end-line="53" selection-end-column="43" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index2.js">
+    <entry file="file://$PROJECT_DIR$/peer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="26" column="17" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="17" />
+        <state relative-caret-position="105">
+          <caret line="7" column="69" selection-start-line="7" selection-start-column="69" selection-end-line="7" selection-end-column="69" />
           <folding />
         </state>
       </provider>

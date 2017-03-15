@@ -5,9 +5,9 @@ function Peer (user_id, isInit) {
     const wrtc = require('wrtc')
     const Peer = require('simple-peer')
     if(isInit){
-        peer = new Peer({ initiator: true, wrtc: wrtc, trickle: true})
+        peer = new Peer({ initiator: true, wrtc: wrtc, trickle: false})
     } else {
-        peer = new Peer({ initiator: false, wrtc: wrtc, trickle: true})
+        peer = new Peer({ initiator: false, wrtc: wrtc, trickle: false})
     }
 
     peer.on('signal', function (data) {
