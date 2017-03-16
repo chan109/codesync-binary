@@ -51,6 +51,7 @@ function parse(data, cb) {
         case 'broadcast':
             //send message to users who are already connected
             for(var peer in peerList) {
+                // console.log("the peers are ",peer," and detail is ", peerList[peer])
                 if(peerList[peer].active) {
                     peerList[peer].send(json.payload)
                 }
@@ -59,6 +60,9 @@ function parse(data, cb) {
         
         case 'message':
             //send message to a particular user
+            // for(var peer in peerList) {
+            //     console.log(peer," ")
+            // }
             if(peerList[json.payload.to]) {
                 peerList[json.payload.to].send(json.payload.data)
             }
@@ -68,6 +72,9 @@ function parse(data, cb) {
     }
     cb && cb()
 }
+
+//TODO need write function for removing users
+
 /** Keep asking questions forever. */
 (function ask () {
     rl.question('', (answer) => {
