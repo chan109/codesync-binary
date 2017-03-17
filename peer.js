@@ -5,22 +5,32 @@ function Peer (user_id, isInit) {
     this.peer = null
     const wrtc = require('wrtc')
     const Peer = require('simple-peer')
-    if(isInit){
-        this.peer = new Peer({ initiator: true, wrtc: wrtc, trickle: true,config: { iceServers: [ { url: 'stun:stun.l.google.com:19302' } ] }})
+    if (isInit) {
+        this.peer = new Peer({
+            initiator: true,
+            wrtc: wrtc,
+            trickle: true,
+            config: {iceServers: [{url: 'stun:stun.l.google.com:19302'}]}
+        })
     } else {
-        this.peer = new Peer({ initiator: false, wrtc: wrtc, trickle: true, config: { iceServers: [ { url: 'stun:stun.l.google.com:19302' } ] }})
+        this.peer = new Peer({
+            initiator: false,
+            wrtc: wrtc,
+            trickle: true,
+            config: {iceServers: [{url: 'stun:stun.l.google.com:19302'}]}
+        })
     }
 
     //data here is the actual offer or the answer
     this.peer.on('signal', function (data) {
-        var sdp = {"event":"conn", "payload":{"to": user_id, "data": data}}
+        var sdp = {"event": "conn", "payload": {"to": user_id, "data": data}}
         console.log(JSON.stringify(sdp));
     })
 
     //trigger by peer.send
     //send data to the remote peer in the custom format
     this.peer.on('data', function (data) {
-        console.log("(",self.user_id,")"," DATA : ", data.toString('utf8'));
+        console.log("(", self.user_id, ")", " DATA : ", data.toString('utf8'));
     })
 
     //p2p connection is established
@@ -31,10 +41,9 @@ function Peer (user_id, isInit) {
     })
 
     this.peer.on('close', function () {
-        console.log("disconneted to ",user_id )
+        console.log("disconneted to ", user_id)
     })
 }
-
 //create answer or offer, it trigger peer.on('signal,......)
 Peer.prototype.signal = function(sdp) {
     this.peer.signal(sdp);

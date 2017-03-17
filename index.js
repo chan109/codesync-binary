@@ -40,12 +40,26 @@ function parse(data, cb) {
             break
         
         case 'offer' :
-            //create a peer connection object with initator set to false
-            var peer = new Peer(json.payload.from, false)
-            //save the peer by key
-            peerList[json.payload.from] = peer
+            if(peerList[json.payload.from] == null) {
+                //create a peer connection object with initator set to false
+                var peer = new Peer(json.payload.from, false)
+                //save the peer by key
+                peerList[json.payload.from] = peer
+            }
             //signal the offer to create the answer
-            peer.signal(json.payload.data)
+            peerList[json.payload.from].signal(json.payload.data)
+            break
+
+        case 'candiate' :
+            if(peerList[json.payload.from] == null) {
+                //create a peer connection object with initator set to false
+                var peer = new Peer(json.payload.from, false)
+                //save the peer by key
+                peerList[json.payload.from] = peer
+            }
+
+            //signal the answer as the last step for the p2p connection
+            peerList[json.payload.from].signal(json.payload.data)
             break
 
         case 'broadcast':
@@ -59,10 +73,7 @@ function parse(data, cb) {
             break
         
         case 'message':
-            //send message to a particular user
-            // for(var peer in peerList) {
-            //     console.log(peer," ")
-            // }
+            
             if(peerList[json.payload.to]) {
                 peerList[json.payload.to].send(json.payload.data)
             }
