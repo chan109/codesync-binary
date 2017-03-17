@@ -6,9 +6,9 @@ function Peer (user_id, isInit) {
     const wrtc = require('wrtc')
     const Peer = require('simple-peer')
     if(isInit){
-        this.peer = new Peer({ initiator: true, wrtc: wrtc, trickle: false})
+        this.peer = new Peer({ initiator: true, wrtc: wrtc, trickle: true,config: { iceServers: [ { url: 'stun:stun.l.google.com:19302' } ] }})
     } else {
-        this.peer = new Peer({ initiator: false, wrtc: wrtc, trickle: false})
+        this.peer = new Peer({ initiator: false, wrtc: wrtc, trickle: true, config: { iceServers: [ { url: 'stun:stun.l.google.com:19302' } ] }})
     }
 
     //data here is the actual offer or the answer
