@@ -10,13 +10,12 @@ var peerList = {}
 
 
 
-function parse(data, cb) {
+function parse(data) {
   // Try to parse the JSON, emit an error otherwise.
   try {
       var json = JSON.parse(data);
   } catch (err) {
       console.log(`{"event" : "error", "data" : "${err}"}`)
-      cb && cb()
       return
   }
 
@@ -83,6 +82,9 @@ function parse(data, cb) {
       })
 
       break
+    case 'echo':
+      console.log(JSON.stringify(json))
+      break
     case 'broadcast':
       // Go through the peerlist.
       for(var peer in peerList) {
@@ -97,16 +99,12 @@ function parse(data, cb) {
       break
   }
 
-
-
-  cb && cb()
 }
 
 function rmUserFromList(user_id) {
   peerList[user_id] = null
   console.log(`list after the deletion: ${Object.keys(peerList).join()}`)
 }
-
 
 
 
@@ -118,11 +116,11 @@ function rmUserFromList(user_id) {
     // Ask a question.
     rl.question('', (answer) => {
         // Parse the answer, wait for the stack to clear and repeat.
-        parse(answer, () => {
-            setTimeout(ask,0)
-        })
+        answer.split('\n').forEach(answer => parse(answer))
+        setTimeout(ask,0)
     })
 })()
+
 
 
 
