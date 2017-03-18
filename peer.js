@@ -90,6 +90,3 @@ Peer.prototype.rm = function () {
 }
 
 module.exports = Peer
-
-
-
