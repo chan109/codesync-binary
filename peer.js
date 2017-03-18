@@ -25,15 +25,11 @@ function Peer (user_id, isInit) {
     //data here is the actual offer/answer/candiate
     //output format:
     this.peer.on('signal', function (data) {
-        var sdp = {"event": "conn", "data": {"to": self.user_id, "data": data}}
-        if(data.type == 'offer') {
-            console.log("offer[",self.user_id,"]\n",JSON.stringify(sdp),"\n");
-        } else if(data.type == 'answer') {
-            console.log("answer[",self.user_id,"]\n",JSON.stringify(sdp),"\n");
-
-        } else {
-            console.log("candiate[",self.user_id,"]\n",JSON.stringify(sdp),"\n");
-        }
+      console.log(JSON.stringify({
+        event: 'conn',
+        to: self.user_id,
+        data: data
+      }))
     })
 
     //trigger by peer.send

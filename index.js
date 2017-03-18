@@ -8,6 +8,8 @@ const rl = Readline.createInterface({
 
 var peerList = {}
 
+
+
 function parse(data, cb) {
   // Try to parse the JSON, emit an error otherwise.
   try {
@@ -17,8 +19,70 @@ function parse(data, cb) {
       cb && cb()
       return
   }
+
+  // Switch different types of events from the server.
   switch(json.event) {
-      case 
+    case 'conn':
+
+      // See the type of data sent from the other user.
+      switch(json.data.type) {
+        case 'offer':
+          // If the peer doesn't exist, create it as an initiator.
+          if(peerList[json.from] == null) {
+              //create a peer connection object with initator set to false
+              var peer = new Peer(json.from, false)
+
+              //save the peer by key
+              peerList[json.from] = peer
+          }
+          //signal the offer to create the answer
+          peerList[json.from].signal(json.data)
+          break
+
+        case 'answer':
+          if(peerList[json.from]) {
+            //signal the answer as the last step for the p2p connection
+            peerList[json.from].signal(json.data)
+          } else {
+            console.log(JSON.stringify({
+              error: 'The answer or the offer is unknown'
+            }))
+          }
+          break
+
+        //default is candiate
+        default:
+          // If the peer doesn't exist, create it as an initiator.
+          if(peerList[json.from] == null) {
+            //create a peer connection object with initator set to false
+            var peer = new Peer(json.from, false)
+
+            //save the peer by key
+            peerList[json.from] = peer
+          }
+          //signal the offer to create the answer
+          peerList[json.from].signal(json.data)
+          break
+      }
+
+      break
+    case 'list':
+      // Go through the users and add peer objects for them.
+      json.users.forEach(user_id => {
+          //making sure connection for user_id does not exist in peerList{}
+          if(peerList[user_id] == null) {
+            //create offer for each users_id
+            var peer = new Peer(user_id, true)
+
+            //store the p2p connection for user
+            peerList[user_id] = peer
+
+            //init the remove users handle to the peer ovject
+            //peerList[user_id].removeHelper(rmUserFromList)
+          }
+      })
+
+      break
   }
 
 
@@ -27,10 +91,8 @@ function parse(data, cb) {
 }
 
 function rmUserFromList(user_id) {
-
-    peerList[user_id] = null
-    console.log(`list after the deletion: ${Object.keys(peerList).join()}`)
-
+  peerList[user_id] = null
+  console.log(`list after the deletion: ${Object.keys(peerList).join()}`)
 }
 
 
@@ -58,40 +120,6 @@ function rmUserFromList(user_id) {
 
     if(json.event == "conn") {
         //do the switch
-        switch(json.data.data.type) {
-            case 'offer':
-                if(peerList[json.data.from] == null) {
-                    //create a peer connection object with initator set to false
-                    var peer = new Peer(json.data.from, false)
-
-                    //save the peer by key
-                    peerList[json.data.from] = peer
-
-                    //init the remove users handle to the peer ovject
-                    //peerList[json.data.from].removeHelper(rmUserFromList)
-                }
-                //signal the offer to create the answer
-                peerList[json.data.from].signal(json.data.data)
-                break
-
-            case 'answer':
-                if(peerList[json.data.from]) {
-                    //signal the answer as the last step for the p2p connection
-                    peerList[json.data.from].signal(json.data.data)
-                } else {
-                    console.log('The answer or the offer is unknown')
-                }
-                break
-
-            //default is candiate
-            default:
-                if(peerList[json.data.from]) {
-                    //signal the answer as the last step for the p2p connection
-                    peerList[json.data.from].signal(json.data.data)
-                } else {
-                    console.log('The answer or the offer is unknown')
-                }
-        }
     } else if(json.event == "list"){
         json.data.forEach((user_id) => {
             //making sure connection for user_id does not exist in peerList{}
