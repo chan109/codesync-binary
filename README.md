@@ -28,5 +28,33 @@ e.g.
 > _users_ - the list of users, as a array.
 >
 
+#### broadcast
+> **Description**
+> This event sends a message to all the peers in the peerList.
+>
+> **JSON Params**
+>
+> _data_ - the data to send to all the peers.
+>
+
 
 ## Events Emitted From The Binary
+
+#### broadcast
+> **Description**
+> This event sends a message to all the peers in the peerList.
+>
+> **JSON Params**
+>
+> _data_ - the data to send to all the peers.
+> _peer_ - the userid of the peer that sent the data.
+>
+
+#### error
+> **Description**
+> This event sends a message to all the peers in the peerList.
+> NOTE: unlike other events this does not use the event param.
+> Instead error, is its own param.
+>
+> **JSON Params**
+> _error_ - the error

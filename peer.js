@@ -35,7 +35,23 @@ function Peer (user_id, isInit) {
     //trigger by peer.send
     //send data to the remote peer in the custom format
     this.peer.on('data', function (data) {
-        console.log("(", self.user_id, ")", " DATA : ", data.toString('utf8'));
+      try {
+        // Try parsing the json.
+        var json = JSON.parse(data) 
+        // If successful, tell the plugin.
+        console.log(JSON.stringify({
+          event: 'broadcast',
+          peer: self.user_id,
+          data: data
+        }))
+
+      } catch (e) {
+        console.log(JSON.stringify({
+          error: 'THERE WAS A HUGE ERROR SENT BY SOMEONE! IN THE RTC CONNECTION',
+          sender: self.user_id,
+          details: data
+        }))
+      }
     })
 
     //p2p connection is established

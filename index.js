@@ -83,6 +83,18 @@ function parse(data, cb) {
       })
 
       break
+    case 'broadcast':
+      // Go through the peerlist.
+      for(var peer in peerList) {
+        var p = peerList[peer]
+        
+        // If it's connected, go for it!
+        if (p.active) {
+          // Send the broadcast!
+          p.send(JSON.stringify(json))
+        }
+      }
+      break
   }
 
 
@@ -152,3 +164,5 @@ function rmUserFromList(user_id) {
     }
 
  */
+
+
