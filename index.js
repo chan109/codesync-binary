@@ -9,13 +9,52 @@ const rl = Readline.createInterface({
 var peerList = {}
 
 function parse(data, cb) {
-    try {
-        var json = JSON.parse(data);
-    } catch (err) {
-        console.log(`{"event" : "error", "data" : ${err}`)
-        cb && cb()
-        return
-    }
+  // Try to parse the JSON, emit an error otherwise.
+  try {
+      var json = JSON.parse(data);
+  } catch (err) {
+      console.log(`{"event" : "error", "data" : "${err}"}`)
+      cb && cb()
+      return
+  }
+  switch(json.event) {
+      case 
+  }
+
+
+
+  cb && cb()
+}
+
+function rmUserFromList(user_id) {
+
+    peerList[user_id] = null
+    console.log(`list after the deletion: ${Object.keys(peerList).join()}`)
+
+}
+
+
+
+
+//TODO need write function for removing users
+
+/** Keep asking questions forever. */
+(function ask () {
+
+    // Ask a question.
+    rl.question('', (answer) => {
+        // Parse the answer, wait for the stack to clear and repeat.
+        parse(answer, () => {
+            setTimeout(ask,0)
+        })
+    })
+})()
+
+
+
+
+/*
+
 
     if(json.event == "conn") {
         //do the switch
@@ -84,23 +123,4 @@ function parse(data, cb) {
         // }
     }
 
-    cb && cb()
-}
-
-function rmUserFromList(user_id) {
-
-    peerList[user_id] = null
-    console.log(`list after the deletion: ${Object.keys(peerList).join()}`)
-
-}
-
-//TODO need write function for removing users
-
-/** Keep asking questions forever. */
-(function ask () {
-    rl.question('', (answer) => {
-        parse(answer, () => {
-            setTimeout(ask,0)
-        })
-    })
-})()
+ */
