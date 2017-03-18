@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7a84be87-e557-4bc8-b686-b3f71c727755" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.js" afterPath="$PROJECT_DIR$/index.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/peer.js" afterPath="$PROJECT_DIR$/peer.js" />
     </list>
@@ -26,7 +25,7 @@
     <favorites_list name="codesync-binary" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.4932486">
+    <splitter split-orientation="horizontal" split-proportion="0.50119144">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="API.md" pinned="false" current-in-tab="false">
@@ -42,8 +41,8 @@
           <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="735">
-                  <caret line="75" column="12" selection-start-line="75" selection-start-column="12" selection-end-line="75" selection-end-column="12" />
+                <state relative-caret-position="120">
+                  <caret line="74" column="41" selection-start-line="74" selection-start-column="41" selection-end-line="74" selection-end-column="41" />
                   <folding />
                 </state>
               </provider>
@@ -75,8 +74,8 @@
                 <state relative-caret-position="0">
                   <caret line="0" column="33" selection-start-line="0" selection-start-column="33" selection-end-line="0" selection-end-column="33" />
                   <folding>
-                    <marker date="1489735551000" expanded="true" signature="32:1393" ph="{...}" />
-                    <marker date="1489735551000" expanded="true" signature="32:1647" ph="{...}" />
+                    <marker date="1489802447000" expanded="true" signature="32:1869" ph="{...}" />
+                    <marker date="1489802447000" expanded="true" signature="32:2326" ph="{...}" />
                   </folding>
                 </state>
               </provider>
@@ -89,10 +88,10 @@
           <file leaf-file-name="peer.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/peer.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="210">
-                  <caret line="14" column="12" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
+                <state relative-caret-position="270">
+                  <caret line="29" column="22" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
                   <folding>
-                    <marker date="1489735551000" expanded="true" signature="32:1393" ph="{...}" />
+                    <marker date="1489802447000" expanded="true" signature="32:1869" ph="{...}" />
                   </folding>
                 </state>
               </provider>
@@ -243,12 +242,12 @@
       <workItem from="1489353450577" duration="9000" />
       <workItem from="1489353585729" duration="6602000" />
       <workItem from="1489364896804" duration="43979000" />
-      <workItem from="1489735317744" duration="2385000" />
+      <workItem from="1489735317744" duration="12148000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53253000" />
+    <option name="totallyTimeSpent" value="63016000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -343,8 +342,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="33" selection-start-line="0" selection-start-column="33" selection-end-line="0" selection-end-column="33" />
           <folding>
-            <marker date="1489735551000" expanded="true" signature="32:1393" ph="{...}" />
-            <marker date="1489735551000" expanded="true" signature="32:1647" ph="{...}" />
+            <marker date="1489802447000" expanded="true" signature="32:1869" ph="{...}" />
+            <marker date="1489802447000" expanded="true" signature="32:2326" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -402,16 +401,16 @@
         <state relative-caret-position="0">
           <caret line="0" column="33" selection-start-line="0" selection-start-column="33" selection-end-line="0" selection-end-column="33" />
           <folding>
-            <marker date="1489735551000" expanded="true" signature="32:1393" ph="{...}" />
-            <marker date="1489735551000" expanded="true" signature="32:1647" ph="{...}" />
+            <marker date="1489802447000" expanded="true" signature="32:1869" ph="{...}" />
+            <marker date="1489802447000" expanded="true" signature="32:2326" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="735">
-          <caret line="75" column="12" selection-start-line="75" selection-start-column="12" selection-end-line="75" selection-end-column="12" />
+        <state relative-caret-position="120">
+          <caret line="74" column="41" selection-start-line="74" selection-start-column="41" selection-end-line="74" selection-end-column="41" />
           <folding />
         </state>
       </provider>
