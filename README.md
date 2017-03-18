@@ -58,3 +58,14 @@ e.g.
 >
 > **JSON Params**
 > _error_ - the error
+
+#### conn
+> **Description**
+> This event is for you to take data and send it to someone.
+>
+> **JSON Params**
+>
+> _to_ - the id of the person that you wanna send this to.
+>
+> _data_ - some data, in string form.
+>

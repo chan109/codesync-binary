@@ -124,7 +124,6 @@ function rmUserFromList(user_id) {
 
 
 
-
 /*
 
 

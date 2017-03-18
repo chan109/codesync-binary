@@ -1,3 +1,5 @@
+
+
 function Peer (user_id, isInit) {
     const self = this
     this.active = false     //when a p2p connection is done, active = true
@@ -11,14 +13,14 @@ function Peer (user_id, isInit) {
             initiator: true,
             wrtc: wrtc,
             trickle: true,
-            config: {iceServers: [{url: 'stun:stun.l.google.com:19302'}]}
+            config: {iceServers: [{url:'stun:stun.l.google.com:19302'},{url:'stun:stun1.l.google.com:19302'},{url:'stun:stun2.l.google.com:19302'},{url:'stun:stun3.l.google.com:19302'},{url:'stun:stun4.l.google.com:19302'},{url:'stun:stun01.sipphone.com'},{url:'stun:stun.ekiga.net'},{url:'stun:stun.fwdnet.net'},{url:'stun:stun.ideasip.com'},{url:'stun:stun.iptel.org'},{url:'stun:stun.rixtelecom.se'}]}
         })
     } else {
         this.peer = new Peer({
             initiator: false,
             wrtc: wrtc,
             trickle: true,
-            config: {iceServers: [{url: 'stun:stun.l.google.com:19302'}]}
+            config: {iceServers: [{url:'stun:stun.l.google.com:19302'},{url:'stun:stun1.l.google.com:19302'},{url:'stun:stun2.l.google.com:19302'},{url:'stun:stun3.l.google.com:19302'},{url:'stun:stun4.l.google.com:19302'},{url:'stun:stun01.sipphone.com'},{url:'stun:stun.ekiga.net'},{url:'stun:stun.fwdnet.net'},{url:'stun:stun.ideasip.com'},{url:'stun:stun.iptel.org'},{url:'stun:stun.rixtelecom.se'}]}
         })
     }
 
