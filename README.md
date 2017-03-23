@@ -1,5 +1,6 @@
 # API
 
+For events that are purely binary-binary go [here](./BINARY.md)
 ### Protocol
 All events sent to the binary must be in JSON format. The events must also be accompanied by a event parameter.
 e.g.
