@@ -13,14 +13,14 @@ function Peer (user_id, isInit) {
             initiator: true,
             wrtc: wrtc,
             trickle: true,
-            config: {iceServers: [{url: 'turn:numb.viagenie.ca',username:'josepht404@gmail.com', credential:'joseph123'}]}
+            config: {iceServers: [{url: 'turn:numb.viagenie.ca',username:'muazkh', credential:'webrtc@live.com'}]}
         })
     } else {
         this.peer = new Peer({
             initiator: false,
             wrtc: wrtc,
             trickle: true,
-            config: {iceServers: [{url: 'turn:numb.viagenie.ca',username:'josepht404@gmail.com', credential:'joseph123'}]}
+            config: {iceServers: [{url: 'turn:numb.viagenie.ca',username:'muazkh', credential:'webrtc@live.com'}]}
         })
     }
 
