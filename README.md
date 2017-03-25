@@ -70,3 +70,8 @@ e.g.
 >
 > _data_ - some data, in string form.
 >
+
+#### ready
+> **Description**
+> This event is for you to notify that the datachannel is ready.
+>

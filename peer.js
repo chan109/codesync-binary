@@ -13,14 +13,14 @@ function Peer (user_id, isInit) {
             initiator: true,
             wrtc: wrtc,
             trickle: true,
-            config: {iceServers: [{url: 'turn:numb.viagenie.ca',username:'josepht404@gmail.com', credential:'joseph123'},{url:'stun:stun.l.google.com:19302'},{url:'stun:stun1.l.google.com:19302'},{url:'stun:stun2.l.google.com:19302'},{url:'stun:stun3.l.google.com:19302'},{url:'stun:stun4.l.google.com:19302'},{url:'stun:stun01.sipphone.com'},{url:'stun:stun.ekiga.net'},{url:'stun:stun.fwdnet.net'},{url:'stun:stun.ideasip.com'},{url:'stun:stun.iptel.org'},{url:'stun:stun.rixtelecom.se'}]}
+            config: {iceServers: [{url: 'turn:numb.viagenie.ca',username:'josepht404@gmail.com', credential:'joseph123'},{url:'stun:stun.l.google.com:19302'}]}
         })
     } else {
         this.peer = new Peer({
             initiator: false,
             wrtc: wrtc,
             trickle: true,
-            config: {iceServers: [{url: 'turn:numb.viagenie.ca',username:'josepht404@gmail.com', credential:'joseph123'},{url:'stun:stun.l.google.com:19302'},{url:'stun:stun1.l.google.com:19302'},{url:'stun:stun2.l.google.com:19302'},{url:'stun:stun3.l.google.com:19302'},{url:'stun:stun4.l.google.com:19302'},{url:'stun:stun01.sipphone.com'},{url:'stun:stun.ekiga.net'},{url:'stun:stun.fwdnet.net'},{url:'stun:stun.ideasip.com'},{url:'stun:stun.iptel.org'},{url:'stun:stun.rixtelecom.se'}]}
+            config: {iceServers: [{url: 'turn:numb.viagenie.ca',username:'josepht404@gmail.com', credential:'joseph123'},{url:'stun:stun.l.google.com:19302'}]}
         })
     }
 
@@ -42,11 +42,10 @@ function Peer (user_id, isInit) {
         var json = JSON.parse(data) 
         // If successful, tell the plugin.
         console.log(JSON.stringify({
-          event: 'broadcast',
+          event: json.event,
           peer: self.user_id,
-          data: data
+          data: json.data
         }))
-
       } catch (e) {
         console.log(JSON.stringify({
           error: 'THERE WAS A HUGE ERROR SENT BY SOMEONE! IN THE RTC CONNECTION',
@@ -60,7 +59,9 @@ function Peer (user_id, isInit) {
     this.peer.on('connect', function () {
         console.log('success')
         self.active = true
-        self.peer.send("Ping");
+        self.peer.send(JSON.stringify({
+            "event" : "ready"
+        }));
     })
 
     this.peer.on('close', function () {
