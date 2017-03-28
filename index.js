@@ -31,6 +31,12 @@ function parse(data) {
               //create a peer connection object with initator set to false
               var peer = new Peer(json.from, false)
 
+              //pass in the handler for removing user
+              peer.removeHelper(function (userId) {
+                  delete peerList[userId]
+                  console.log(`User's List after the deletion: ${JSON.stringify(peerList}`))
+              })
+
               //save the peer by key
               peerList[json.from] = peer
           }
@@ -56,6 +62,12 @@ function parse(data) {
             //create a peer connection object with initator set to false
             var peer = new Peer(json.from, false)
 
+              //pass in the handler for removing user
+              peer.removeHelper(function (userId) {
+                  delete peerList[userId]
+                  console.log(`User's List after the deletion: ${JSON.stringify(peerList}`))
+              })
+
             //save the peer by key
             peerList[json.from] = peer
           }
@@ -73,11 +85,15 @@ function parse(data) {
             //create offer for each users_id
             var peer = new Peer(user_id, true)
 
+            //pass in the handler for removing user
+            peer.removeHelper(function (userId) {
+                delete peerList[userId]
+                console.log(`User's List after the deletion: ${JSON.stringify(peerList}`))
+            })
+
             //store the p2p connection for user
             peerList[user_id] = peer
-
-            //init the remove users handle to the peer ovject
-            //peerList[user_id].removeHelper(rmUserFromList)
+              
           }
       })
 
@@ -101,14 +117,6 @@ function parse(data) {
 
 }
 
-function rmUserFromList(user_id) {
-  peerList[user_id] = null
-  console.log(`list after the deletion: ${Object.keys(peerList).join()}`)
-}
-
-
-
-//TODO need write function for removing users
 
 /** Keep asking questions forever. */
 (function ask () {

@@ -5,7 +5,7 @@ function Peer (user_id, isInit) {
     this.active = false     //when a p2p connection is done, active = true
     this.user_id = user_id
     this.peer = null
-    this.rmcb = null        //functio to call when removing a user
+    this.rmcb = null        //function to call when removing a user
     const wrtc = require('wrtc')
     const Peer = require('simple-peer')
     if (isInit) {
@@ -24,8 +24,7 @@ function Peer (user_id, isInit) {
         })
     }
 
-    //data here is the actual offer/answer/candiate
-    //output format:
+    //Handle Offer/Answer
     this.peer.on('signal', function (data) {
       console.log(JSON.stringify({
         event: 'conn',
@@ -34,8 +33,8 @@ function Peer (user_id, isInit) {
       }))
     })
 
-    //trigger by peer.send
-    //send data to the remote peer in the custom format
+
+    //Handle the data exchange using the datachannel
     this.peer.on('data', function (data) {
       try {
         // Try parsing the json.
@@ -64,14 +63,16 @@ function Peer (user_id, isInit) {
         }));
     })
 
+    //The p2p connection to one of the user is lost
+    //also remove the peer object from the peerList
     this.peer.on('close', function () {
-        //console.log(this.rmcb)
-        //this.rmcb.call(this, this.user_id)
-        console.log("disconneted to ", user_id)
+        console.log(self.rmcb)
+        self.rmcb.call(self, self.user_id)
+        console.log("disconneted to ", self.user_id)
     })
 }
 
-//create answer or offer, it trigger peer.on('signal,......)
+//create answer or offer
 Peer.prototype.signal = function(sdp) {
     this.peer.signal(sdp);
 }
@@ -81,11 +82,13 @@ Peer.prototype.send = function (data) {
     this.peer.send(data)
 }
 
-//remove user from the peerlist once the connection to the client is lost
+//set the remove user handler
 Peer.prototype.removeHelper = function (cb) {
     this.rmcb = cb
+    console.log(cb)
 }
 
+//this is not used unless user is allowed to intentionally disconnect from someone without shouting its binary down. Not sure if we support this feature or not.
 Peer.prototype.rm = function () {
     this.peer.destroy()
 }
