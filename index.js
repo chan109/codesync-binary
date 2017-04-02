@@ -34,7 +34,7 @@ function parse(data) {
               //pass in the handler for removing user
               peer.removeHelper(function (userId) {
                   delete peerList[userId]
-                  console.log(`User's List after the deletion: ${JSON.stringify(peerList}`))
+                  console.log(`User's List after the deletion: ${JSON.stringify(peerList)}`)
               })
 
               //save the peer by key
@@ -65,7 +65,7 @@ function parse(data) {
               //pass in the handler for removing user
               peer.removeHelper(function (userId) {
                   delete peerList[userId]
-                  console.log(`User's List after the deletion: ${JSON.stringify(peerList}`))
+                  console.log(`User's List after the deletion: ${JSON.stringify(peerList)}`)
               })
 
             //save the peer by key
@@ -88,7 +88,7 @@ function parse(data) {
             //pass in the handler for removing user
             peer.removeHelper(function (userId) {
                 delete peerList[userId]
-                console.log(`User's List after the deletion: ${JSON.stringify(peerList}`))
+                console.log(`User's List after the deletion: ${JSON.stringify(peerList)}`)
             })
 
             //store the p2p connection for user
@@ -129,46 +129,6 @@ function parse(data) {
     })
 })()
 
-
-
-
-/*
-
-
-    if(json.event == "conn") {
-        //do the switch
-    } else if(json.event == "list"){
-        json.data.forEach((user_id) => {
-            //making sure connection for user_id does not exist in peerList{}
-            if(peerList[user_id] == null) {
-                //create offer for each users_id
-                var peer = new Peer(user_id, true)
-
-                //store the p2p connection for user
-                peerList[user_id] = peer
-
-                //init the remove users handle to the peer ovject
-                //peerList[user_id].removeHelper(rmUserFromList)
-            }
-        })
-    } else{
-        //broadcasting the data through the channel
-        for(var peer in peerList) {
-            // console.log("the peers are ",peer," and detail is ", peerList[peer])
-            if(peerList[peer].active) {
-                peerList[peer].send(json)
-            } else {
-                console.log("P2P connection has not been set yet");
-            }
-        }
-
-        //sedning data to a particular user in the list
-        // if(peerList[json.payload.to]) {
-        //     peerList[json.payload.to].send(json.payload.data)
-        // }
-    }
-
- */
 
 
 
