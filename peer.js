@@ -85,7 +85,6 @@ Peer.prototype.send = function (data) {
 //set the remove user handler
 Peer.prototype.removeHelper = function (cb) {
     this.rmcb = cb
-    console.log(cb)
 }
 
 //this is not used unless user is allowed to intentionally disconnect from someone without shouting its binary down. Not sure if we support this feature or not.
