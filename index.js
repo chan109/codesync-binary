@@ -8,8 +8,6 @@ const rl = Readline.createInterface({
 
 var peerList = {}
 
-
-
 function parse(data) {
   // Try to parse the JSON, emit an error otherwise.
   try {
@@ -34,8 +32,7 @@ function parse(data) {
               //pass in the handler for removing user
               peer.removeHelper(function (userId) {
                   delete peerList[userId]
-                  console.log(`User's List after the deletion: ${JSON.stringify(peerList}`))
-              })
+s              })
 
               //save the peer by key
               peerList[json.from] = peer
@@ -65,7 +62,7 @@ function parse(data) {
               //pass in the handler for removing user
               peer.removeHelper(function (userId) {
                   delete peerList[userId]
-                  console.log(`User's List after the deletion: ${JSON.stringify(peerList}`))
+                  console.log(`User's List after the deletion: ${JSON.stringify(peerList)}`)
               })
 
             //save the peer by key
@@ -78,17 +75,18 @@ function parse(data) {
 
       break
     case 'list':
+      console.log('Going through the list')
       // Go through the users and add peer objects for them.
-      json.users.forEach(user_id => {
+        json.users.forEach(user_id => {
           //making sure connection for user_id does not exist in peerList{}
           if(peerList[user_id] == null) {
             //create offer for each users_id
             var peer = new Peer(user_id, true)
-
+            console.log(`Added user ${user_id}\n`)
             //pass in the handler for removing user
             peer.removeHelper(function (userId) {
                 delete peerList[userId]
-                console.log(`User's List after the deletion: ${JSON.stringify(peerList}`))
+                console.log(`User's List after the deletion: ${JSON.stringify(peerList)}`)
             })
 
             //store the p2p connection for user
